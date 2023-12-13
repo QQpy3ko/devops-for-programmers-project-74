@@ -1,0 +1,10 @@
+services:
+  app-dev:
+    extends:
+      file: docker-compose.yml
+      service: app
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "8081:8080"
+    command: npm run dev
