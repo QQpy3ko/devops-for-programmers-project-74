@@ -20,7 +20,10 @@ prepare-env:
 	cp -n .env.example .env
 
 docker-tests:
-	docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+	docker-compose -f docker-compose.yml up --abort-on-container-exit
 
 docker-dev:
 	docker-compose -f docker-compose.override.yml up
+
+docker-orph:
+	docker-compose down --remove-orphans

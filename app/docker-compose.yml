@@ -1,8 +1,11 @@
+version: '3'
+
 services:
   app:
-    build: .
-    volumes:
-      - /home/qq/app:/var/app
+    image: qqpy3ko/devops-for-programmers-project-74
+    build: 
+      context: .
+      dockerfile: Dockerfile.production
     environment:
       - NODE_ENV=test
     command: npm test
