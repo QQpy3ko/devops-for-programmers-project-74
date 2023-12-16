@@ -4,7 +4,7 @@ services:
   app:
     image: qqpy3ko/devops-for-programmers-project-74
     build: 
-      context: .
+      context: ./
       dockerfile: Dockerfile.production
     environment:
       - NODE_ENV=test
