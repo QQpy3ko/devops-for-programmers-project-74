@@ -1,16 +1,16 @@
 FROM node:14.18.1-slim
 
-RUN echo "deb http://security.debian.org/debian-security bullseye-security main contrib non-free" > /etc/apt/sources.list
+# RUN echo "deb http://security.debian.org/debian-security bullseye-security main contrib non-free" > /etc/apt/sources.list
 
-RUN echo ls
+# RUN echo ls
 
 WORKDIR /app
 
-COPY package.json .
-COPY package-lock.json .
+# COPY package.json .
+# COPY package-lock.json .
 
-RUN npm ci
+# RUN npm ci
 
-COPY . .
+# COPY . .
 
-CMD ["bash", "-c", "npm run migrate && npx fastify start -a 0.0.0.0 -l info -P app.js"]
+# CMD ["bash", "-c", "npm run migrate && npx fastify start -a 0.0.0.0 -l info -P app.js"]
