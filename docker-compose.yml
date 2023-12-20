@@ -6,4 +6,6 @@ services:
     build: 
       context: ./
       dockerfile: Dockerfile.production
-    command: npm test
+    environment:
+      - NODE_ENV=test
+    command: npx sequelize-cli init && npm test
