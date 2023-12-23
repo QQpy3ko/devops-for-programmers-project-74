@@ -2,10 +2,23 @@ version: '3'
 
 services:
   app:
+    depends_on: 
+      - db
     image: qqpy3ko/devops-for-programmers-project-74:latest
     build: 
       context: ./
       dockerfile: Dockerfile.production
     environment:
-      - NODE_ENV=test
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
     command: npx sequelize-cli init && npm test
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USERNAME: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}

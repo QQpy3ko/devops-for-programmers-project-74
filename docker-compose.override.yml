@@ -5,13 +5,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: qqpy3ko/devops-for-programmers-project-74:development
     volumes:
       - ./app:/app
     environment:
       - NODE_ENV=development
     ports:
       - "8080:8080"
-    command: npm run dev
+    command: bash -c 'sleep 3 && npm run dev'
   caddy:
     depends_on: 
       - app
@@ -24,7 +25,6 @@ services:
       - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
-
 volumes:
   caddy_data:
   caddy_config:
