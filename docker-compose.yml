@@ -9,16 +9,18 @@ services:
       context: ./
       dockerfile: Dockerfile.production
     environment:
-      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_HOST: db
       DATABASE_PORT: ${DATABASE_PORT}
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-    command: npx sequelize-cli init && npm test
+    command: bash -c "sleep 3 && npm test"
   db:
     image: postgres:16
-    restart: always
-    environment:
-      POSTGRES_USERNAME: ${DATABASE_USERNAME}
+    volumes:
+      - /db:/var/lib/postgresql/data
+    restart:  unless-stopped
+    environment:     
+      POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_DB: db

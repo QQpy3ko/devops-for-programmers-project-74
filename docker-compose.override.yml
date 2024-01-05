@@ -12,7 +12,8 @@ services:
       - NODE_ENV=development
     ports:
       - "8080:8080"
-    command: bash -c 'sleep 3 && npm run dev'
+    # запускаем контейнер для разработки, npm start вызовет prestart и проч. с подключением к Postgres, а для разработки юзаем sqlite
+    command: bash -c "sleep 3 && make dev"
   caddy:
     depends_on: 
       - app
