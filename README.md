@@ -14,11 +14,18 @@ docker pull qqpy3ko/devops-for-programmers-project-74:latest
 - Docker
 - Make
 
+# Install dependencies
+
+make install-depend
+
 # Development
-make docker-dev (local development with sqlite)
+make compose-dev (locally with sqlite)
 
 # Running Tests
 make ci
+
+# Build image for production and tests separately
+make compose-build-prod
 
 # Clean context
 make docker-orph
